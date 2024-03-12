@@ -19,6 +19,7 @@ services:
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
         volumes:
             - '.:/var/www/html'
+        command: ["/var/www/html/entrypoint.sh"]
         networks:
             - sail
         depends_on:
