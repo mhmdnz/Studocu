@@ -1,66 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Studocu Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Welcome to the Studocu project! This document serves as a comprehensive guide to help you understand, install, and use the project effectively.
 
-## About Laravel
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Project Stack](#project-stack)
+- [Installation](#installation)
+    - [With Docker](#with-docker)
+    - [With Sail](#with-sail)
+- [How to Use the Project](#how-to-use-the-project)
+- [Running Tests](#running-tests)
+- [Technical Aspects](#technical-aspects)
+- [Modular Architecture](#modular-architecture)
+- [Design Patterns](#design-patterns)
+- [Tests](#tests)
+- [Contact](#contact)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Project Overview
+**Studocu** is a collaborative platform designed for users to store, access, and interact with flashcards. It allows multiple users to save flashcards with questions and answers, engage in self-assessment quizzes, and monitor their learning progress through statistics. This platform is especially beneficial for students and educators looking for an efficient way to organize study material and enhance learning outcomes.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Project Stack
+### PHP 8.3
+A popular general-purpose scripting language that is especially suited to web development. It is fast, flexible, and pragmatic.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Laravel 11
+A web application framework with expressive, elegant syntax. Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality.
 
-## Learning Laravel
+### MySQL
+An open-source relational database management system. It is a central component of the LAMP web application software stack.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Docker - Sail (Optional)
+Docker provides a way to run applications securely isolated in a container, packaged with all its dependencies and libraries. For those preferring a Docker-based environment, Laravel Sail is an optional tool that offers a simple command-line interface for interacting with Laravel's default Docker development environment.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Installation
+### **With Docker**
+1. Clone the repository.
+2. `cd <project directory>`
+3. Run the following command:
+`docker-compose up -d`
+4. **Important Note:** After running containers, please wait for a couple of minutes, or check your container to see when composer install, migrations, seeds are done. Then, you are good to go. For the first setup, it normally takes 3 to 8 minutes, depending on your computer and network speeds.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### **With Sail**
+1. Clone the repository.
+2. `cd <project directory>`
+3. Rename `docker-compose-sail.yml` to `docker-compose.yml`.
+4. Execute `composer install`.
+5. Use `./vendor/bin/sail up`.
 
-## Laravel Sponsors
+## How to Use the Project
+You can start using the project by running the following command:
+`docker-compose exec laravel.test php artisan flashcard:interactive`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Running Tests
+You can run tests by using this command:
+`docker-compose exec laravel.test php artisan test`
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Technical Aspects
+Please note that the project was written in two days and will have some issues. To me, it's a 70% good project. For example, creating a user (as it was sort of optional for the task) doesn't have enough validation, and you will encounter errors if looking for edge cases. However, I added sufficient validation for a similar situation with creating flashcards, and you can check validation and test coverage for it.
 
-## Contributing
+## Modular Architecture
+Please check the `app/Modules/FlashCards` directory to see all the codes. I wrote it in a modular way to have everything in one place, making the project expandable. The manipulation of it is focused, and each team can work on one module. Also, if needed, we can easily extract each module into a separate microservice.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Design Patterns
+Alongside all patterns that Laravel gives us to use (like the Command Pattern, which is used in Laravel migration), I also added some to my code as examples:
 
-## Code of Conduct
+### Dependency Injection
+I used Dependency Injection as much as I could (I might have missed some cases) but I believe its covering most of the services. Most classes will be auto-wired by Laravel, but to be sure, I added providers for most of them. In some cases, I needed to use instant binding so my workflow would have access to that through the container.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Factory
+I created one factory as an example in my module. This Factory follows the Open/Close principle so that you can easily add more services under its command without touching my code.
 
-## Security Vulnerabilities
+### Adapter
+I created one Adapter as an example so that Laravel's "search function", which we are not able to write tests for, is used in this class. It can be easily used and changed if needed as it is injected, also it gives the power to Mock in my test classes in the future.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Bridge
+I created one bridge class also to aggregate some codes, helping me to decouple codes and preparation so that my services can focus on their purposes instead of generating
+## Tests
+I tried to use Test-Driven Development (TDD) as much as I could. The test coverage might not be full, but I tried to cover as much as I had time for.
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Contact
+Feel free to contact me if you had any issues running the project at mhmd_nzri@yahoo.com.
