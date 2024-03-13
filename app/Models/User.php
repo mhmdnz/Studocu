@@ -17,13 +17,13 @@ use Illuminate\Support\Collection;
  * @property Carbon updated_at
  *
  * @property Collection flashCards
- * @method static UserFactory factory($count = null, $state = [])
+ * @method UserFactory factory($count = null, $state = [])
  */
 class User extends Model
 {
     use HasFactory;
 
-    public Const DEFAULT_USER = 'studocu';
+    public Const string DEFAULT_USER = 'studocu';
 
     public function flashCards()
     {

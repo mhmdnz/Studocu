@@ -1,8 +1,15 @@
 <?php
 return [
-    'options' => [
-        'Option 1' => 'This is option 1',
-        'Option 2' => 'This is option 2',
-        'Option 3' => 'Exit',
+    'main-options' => [
+        'CreateFlashCard' => 'CreateFlashCard',
+        'ListCards' => 'ListCards',
+        'Practice' => 'Practice',
+        'Stats' => 'Stats',
+        'Reset' => 'Reset',
+        'Exit' => 'Exit',
+    ],
+    'practice-options' => [
+        'AnswerCard' => 'AnswerCard',
+        'Exit' => 'Exit',
     ]
 ];
