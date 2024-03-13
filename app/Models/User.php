@@ -2,16 +2,34 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
-class User extends Authenticatable
+/**
+ * Class User
+ * @package App\Models
+ * @property int id
+ * @property string name
+ * @property Carbon created_at
+ * @property Carbon updated_at
+ *
+ * @property Collection flashCards
+ * @method static UserFactory factory($count = null, $state = [])
+ */
+class User extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
-    public Const DEFAULT_USER = 'default';
+    public Const DEFAULT_USER = 'studocu';
+
+    public function flashCards()
+    {
+        return $this->belongsToMany(FlashCard::class, 'user_flash_cards')
+            ->withPivot('status');
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -21,17 +39,4 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
     ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
 }
