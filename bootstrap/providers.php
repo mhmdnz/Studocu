@@ -9,4 +9,5 @@ return [
     App\Modules\FlashCard\Providers\PracticeCommandActionProvider::class,
     App\Modules\FlashCard\Providers\ShowUserStatsCommandServiceProvider::class,
     App\Modules\FlashCard\Providers\AnswerCardCommandServiceProvider::class,
+    App\Modules\FlashCard\Providers\SearchPromptProvider::class,
 ];
