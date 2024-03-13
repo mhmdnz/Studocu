@@ -44,7 +44,7 @@ class MainMenoActionTest extends TestCase
         $commandMock = Mockery::mock(Command::class);
         $commandMock->shouldReceive('choice')->times(3)->andReturn('Practice', 'Stat', 'Exit');
         $commandMock->shouldReceive('info')->once();
-        
+
         $action = new MainMenoAction($commandFactoryMock);
 
         //ACT
