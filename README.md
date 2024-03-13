@@ -38,7 +38,7 @@ Docker provides a way to run applications securely isolated in a container, pack
 2. `cd <project directory>`
 3. Run the following command:
 `docker-compose up -d`
-4. **Important Note:** After running containers, please wait for a couple of minutes, or check your container to see when composer install, migrations, seeds are done. Then, you are good to go. For the first setup, it normally takes 3 to 8 minutes, depending on your computer and network speeds.
+4. **Important Note:** After running containers, please wait for couple of minutes, or check your container to see when composer install, migrations, seeds are done. Then, you are good to go. For the first setup, it normally takes 3 to 8 minutes, depending on your computer and network speeds.
 
 ### **With Sail**
 1. Clone the repository.
@@ -61,6 +61,9 @@ Please note that the project was written in two days and will have some issues. 
 
 ## Modular Architecture
 Please check the `app/Modules/FlashCards` directory to see all the codes. I wrote it in a modular way to have everything in one place, making the project expandable. The manipulation of it is focused, and each team can work on one module. Also, if needed, we can easily extract each module into a separate microservice.
+
+## Application Layers
+In this application, I used four different layers: InteractiveCommand, Actions, Services, and Repositories. Each layer interacts with the others, making it easily manageable. This separation ensures that the logic representing business processes is distinct from the database layer.
 
 ## Design Patterns
 Alongside all patterns that Laravel gives us to use (like the Command Pattern, which is used in Laravel migration), I also added some to my code as examples:
