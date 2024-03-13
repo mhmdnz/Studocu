@@ -10,14 +10,18 @@ use App\Modules\FlashCard\Interfaces\FlashCardRepositoryInterface;
 use App\Modules\FlashCard\Interfaces\SearchPromptInterface;
 use App\Modules\FlashCard\Interfaces\UserRepositoryInterface;
 use Illuminate\Console\Command;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Mockery;
 
 class AnswerCardCommandServiceTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test  */
     public function invoke_with_correct_answer_updates_status_correctly()
     {
+        //Arrange
         $flashCard = FlashCard::factory()->create();
         $user = User::factory()->create();
 
@@ -36,6 +40,7 @@ class AnswerCardCommandServiceTest extends TestCase
 
         $service = new AnswerCardCommandService($flashCardRepositoryMock, $userRepositoryMock, $commandMock, $searchPromptMock);
 
+        //ACT
         $service($user);
     }
 }
