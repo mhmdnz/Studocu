@@ -1,6 +1,7 @@
 <?php
 
 namespace Tests\Unit\Modules\FlashCard\Commands;
+
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Artisan;
