@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Modules\FlashCard\Services;
+namespace App\Modules\FlashCard\Services;
 
 use App\Models\User;
 use App\Modules\FlashCard\Interfaces\GetOrCreateUserServiceInterface;
@@ -20,7 +20,7 @@ readonly class GetOrCreateUserService implements GetOrCreateUserServiceInterface
     public function __invoke(): User
     {
         $userId = $this->searchPrompt->search(
-            label: 'Search for a GetOrCreateUserServiceuser: or select studocu user',
+            label: "Search for existing user or select 'Create User' from the list !!Use keyboard arrow down!!",
             options: fn ($value) => strlen($value) > 0
                 ? User::where('name', 'like', "%{$value}%")->pluck('name', 'id')->all()
                 : [-1 => 'Create User'],

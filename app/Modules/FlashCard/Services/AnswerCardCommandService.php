@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Modules\FlashCard\Services;
+namespace App\Modules\FlashCard\Services;
 
 use App\Models\User;
 use App\Modules\FlashCard\Enums\FlashCardStatus;
